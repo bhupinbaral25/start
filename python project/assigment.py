@@ -1,7 +1,7 @@
 # Assignment Question Number 1
 # Bhupin Baral
 # ML_internship
-"""  
+ 
 list1 = [100,200,300,400,500]
 list2 = [1,10,100,1000,10000]
 
@@ -23,27 +23,44 @@ dict={
 }
 vehicles = [(key.upper(), weight) for key, weight in dict.items() if weight <= 5000 ]
 print(vehicles)
-"""
-'''
-# Assignment 2 Python Programming 
+
+# Assignment 2 Python Programming
+ 
 from datetime import datetime
 import json
-name = str(input("Enter Your name"))
-dob = datetime.strptime(input("Enter Date of birth (yyyy-mm-dd) "), "%Y-%m-%d")
-age = int(input("Enter you the age "))
-hobbies = list(str(input("Enter your hobbies:")).split(','))
+while True:
+    name = input("Enter Your name")
+    dob = input("Enter Date of birth (yyyy-mm-dd) ")
+    age = input("Enter you the age ")
+    hobbies =input("Enter your hobbies:")
+    
+    try:
+        str(name)
+        datetime.strptime(dob,"%Y-%m-%d")
+        int(age)
+        list(str(hobbies).split(','))
+        typeofdata = True
+    except :
+      typeofdata = False
+      print("There is no valid inputs...Try Again ")
+    if(typeofdata == True):
+        hobbies = list(str(hobbies).split(','))
+        data_dic = {
+            "Name" : str(name),
+            "Date of birth" : dob,
+            "Age" : int(age),
+            "Hobbies" : hobbies
+        }
+    
+    with open("datafile.json", "w") as cf:
+        json.dump(data_dic , cf)
+    key_input = input("Enter Y to continue and N to exit  ")
+    if key_input == 'N':
+      print(data_dic)
+      break
 
-data = {
-    "Name" : name,
-    "Date of birth" : dob,
-    "Age" : age,
-    "Hobbies" : hobbies 
-}
-  
-with open("datafile.json", "w") as cf:
-    json.dumps(data, cf)
 
-'''
+
 
 def isBalanced(pass_string):
     list1 = ["[","{","("]
