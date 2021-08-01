@@ -24,7 +24,7 @@ dict={
 vehicles = [(key.upper(), weight) for key, weight in dict.items() if weight <= 5000 ]
 print(vehicles)
 """
-
+'''
 # Assignment 2 Python Programming 
 from datetime import datetime
 import json
@@ -43,9 +43,26 @@ data = {
 with open("datafile.json", "w") as cf:
     json.dumps(data, cf)
 
+'''
 
+def isBalanced(pass_string):
+    list1 = ["[","{","("]
+    clist2 = ["]","}",")"]
+    templist = []
 
-
-
+    for paren in pass_string:
+        if paren in list1:
+            templist.append(paren)
+        elif paren in clist2:
+            position = clist2.index(paren)
+            if ((len(templist) > 0) and (list1[position] == templist[len(templist)-1])):
+                templist.pop()
+            else:
+                return "NO"
+    if len(templist) == 0:
+        return "Yes"
+    else:
+        return "NO"
+print(isBalanced(input("Enter the string you want to check ")))
 
 
