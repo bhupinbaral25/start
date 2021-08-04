@@ -1,6 +1,8 @@
-# Assignment Question Number 1
+
 # Bhupin Baral
 # ML_internship
+'''
+# Assignment Question Number 1
  
 list1 = [100,200,300,400,500]
 list2 = [1,10,100,1000,10000]
@@ -23,8 +25,9 @@ dict={
 }
 vehicles = [(key.upper(), weight) for key, weight in dict.items() if weight <= 5000 ]
 print(vehicles)
-
-# Assignment 2 Python Programming
+'''
+'''
+# Assignment Question number 2
  
 from datetime import datetime
 import json
@@ -52,16 +55,16 @@ while True:
             "Hobbies" : hobbies
         }
     
-    with open("datafile.json", "w") as cf:
+    with open("datafile.json", "a+") as cf:
         json.dump(data_dic , cf)
     key_input = input("Enter Y to continue and N to exit  ")
     if key_input == 'N':
       print(data_dic)
       break
 
-
-
-
+'''
+'''
+#Assignment question number 3
 def isBalanced(pass_string):
     list1 = ["[","{","("]
     clist2 = ["]","}",")"]
@@ -82,4 +85,89 @@ def isBalanced(pass_string):
         return "NO"
 print(isBalanced(input("Enter the string you want to check ")))
 
+
+
+def rotateLeft(array_list, num_rotate):
+    temp = []
+    i = 0
+    while (i < num_rotate):
+        temp.append(array_list[i])
+        i =i+1
+    i = 0
+    while (num_rotate < len(array_list)):
+        array_list[i] = array_list[num_rotate]
+        i = i + 1
+        num_rotate = num_rotate + 1
+    array_list[:] = array_list[: i] + temp
+    return array_list
+
+my_array = []
+n = int(input('ENter the lenght of array you want to enter'))
+for i in  range(n):
+    my_array.append(int(input("Enter the numbers ")))
+print(my_array)
+num_rotate = int(input('Enter the number for rotation'))
+print(f"Array after left rotation is:{rotateLeft(my_array, num_rotate)}" )
+
+class Square:
+    def __init__(self, num):
+        self.num = num
+        self.counter = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.counter >= self.num:
+            raise StopIteration
+
+        self.counter += 1
+        return self.counter ** 2
+
+square = Square(5)
+
+for result in square:
+    print(result)
+
+
+def square(n):
+    i = 0
+    while i < n:
+        yield i*i
+        i += 1
+for i in square(5):
+    print((i))
+
+def my_decorator(arg=None):
+    def decorator(function):
+        def function( ):
+            print( "Hello Welcoe in decorators  ")
+        return function
+ 
+    if callable(arg):
+        return decorator(arg)  
+    else:
+        return decorator
+ 
+@my_decorator(arg=1)
+def my_func():
+    print('my_func')
+ 
+ 
+@my_decorator
+def my_func1():
+    print('my_func1')
+ 
+ 
+if __name__ == "__main__":
+    my_func()
+    my_func1()
+
+'''
+
+from fpdf import FPDF
+pdf = FPDF(orientation = 'P', unit = 'mm', format = 'A4')
+pdf.add_page()
+pdf.set_font('helvetica', 'bold', 10)
+pdf.set_text_color(255, 255, 255)
 
